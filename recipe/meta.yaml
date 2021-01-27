@@ -2,15 +2,15 @@
 {% set mklist_version = "1.6" %}
 {% set build_number = "0" %}
 
+{% set native = 'm2w64-' if win else '' %}
+{% set posix = 'm2-' if win else '' %}
+
 package:
   name: ldraw
 
 source:
-  - url: http://www.ldraw.org/library/updates/complete.zip
-    sha256: 471f7c11eebcc3218fc72d24b84ce9494d27b5c1ae8d05d962ed6c5fd9b63ffe
-
-  - url: http://www.ldraw.org/library/official/LDConfig.ldr
-    sha256: 231b47b80a829082e316f6cc11d260d2e4810c858b0036d8c26edd2999a0e5d4
+  - url: https://salsa.debian.org/debian/ldraw-parts/-/archive/debian/{{ parts_version }}+ds-1/ldraw-parts-debian-{{ parts_version }}+ds.tar.gz
+    sha256: 0c4658b355912a0f232fc075d4c2f3830901d5a4023b3985e53a66fd924043fc
 
 build:
   number: {{ build_number }}
@@ -33,12 +33,11 @@ outputs:
     version: {{ mklist_version }}
     requirements:
       build:
-        - {{ compiler('c') }}
-        - unzip      # [not win]
-        - m2-unzip   # [win]
-        - m2-sed     # [win]
-        - make
-    script: build_mklist.sh    # [unix]
+        - {{ compiler('m2w64_c') }} # [win]
+        - posix                     # [win]
+        - {{ compiler('c') }}       # [not win]
+        - make                      # [not win]
+    script: build_mklist.sh    # [not win]
     script: build_mklist.bat   # [win]
     test:
       commands:
