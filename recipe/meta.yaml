@@ -1,4 +1,4 @@
-{% set parts_version = "1903" %}
+{% set parts_version = "2206" %}
 {% set mklist_version = "1.6" %}
 {% set build_number = "0" %}
 
@@ -7,10 +7,10 @@ package:
 
 source:
   - url: http://www.ldraw.org/library/updates/complete.zip
-    sha256: 471f7c11eebcc3218fc72d24b84ce9494d27b5c1ae8d05d962ed6c5fd9b63ffe
+    sha256: a164a0bf1885213ff6c6ae90dd5805097d57ea858ccfae3129792b65f10f5aa9
 
   - url: http://www.ldraw.org/library/official/LDConfig.ldr
-    sha256: 231b47b80a829082e316f6cc11d260d2e4810c858b0036d8c26edd2999a0e5d4
+    sha256: 1c41cfed43b935de8b2113d9e9617e786aacadb0b0329cea2842032fdf166905
 
 build:
   number: {{ build_number }}
