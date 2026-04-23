@@ -1,22 +1,13 @@
-{% set parts_version = "2206" %}
+{% set parts_version = "2404" %}
 {% set mklist_version = "1.6" %}
-{% set build_number = "1" %}
+{% set build_number = "0" %}
 
 package:
   name: ldraw
 
 source:
   - url: http://www.ldraw.org/library/updates/complete.zip
-    sha256: a164a0bf1885213ff6c6ae90dd5805097d57ea858ccfae3129792b65f10f5aa9
-
-  - url: http://www.ldraw.org/library/official/LDConfig.ldr
-    sha256: 1c41cfed43b935de8b2113d9e9617e786aacadb0b0329cea2842032fdf166905
-
-  - url: http://www.ldraw.org/library/official/LDCfgalt.ldr
-    sha256: d42d739769ec6850eb691f0be6c8de6f7145a4580d9fdc2024888f43f4cb7189
-
-  - url: http://www.ldraw.org/library/official/LDConfig_TLG.ldr
-    sha256: 04103c69f43a2655d54d4158f119a850ba77f6a1cb8233392570c6c06f792f0b
+    sha256: d851c974c75b45110118f53b03d5db21c3610be7f3046d8e00c3f299f77f6ffc
 
 build:
   number: {{ build_number }}
@@ -28,15 +19,11 @@ outputs:
     script: build_parts.bat  # [win]
     test:
       commands:
-        - test -f $PREFIX/share/ldraw/LDConfig.ldr      # [unix]
-        - test -f $PREFIX/share/ldraw/LDConfig_TLG.ldr  # [unix]
         - test -f $PREFIX/share/ldraw/LDCfgalt.ldr      # [unix]
         - test -d $PREFIX/share/ldraw/parts/            # [unix]
         - test -d $PREFIX/share/ldraw/models/           # [unix]
         - test -f $PREFIX/share/ldraw/models/car.ldr    # [unix]
         - test -f $PREFIX/share/ldraw/parts/u9462.dat   # [unix]
-        - if exist %LIBRARY_PREFIX%\share\ldraw\LDConfig.ldr (exit 0) else (exit 1)  # [win]
-        - if exist %LIBRARY_PREFIX%\share\ldraw\LDConfig_TLG.ldr (exit 0) else (exit 1)  # [win]
         - if exist %LIBRARY_PREFIX%\share\ldraw\LDfgalt.ldr (exit 0) else (exit 1)  # [win]
         - if exist %LIBRARY_PREFIX%\share\ldraw\parts\u9462.dat (exit 0) else (exit 1)  # [win]
         - if exist %LIBRARY_PREFIX%\share\ldraw\models\car.ldr (exit 0) else (exit 1)   # [win]
@@ -46,6 +33,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - unzip      # [not win]
         - m2-unzip   # [win]
         - m2-sed     # [win]
