@@ -15,22 +15,19 @@ build:
 outputs:
   - name: ldraw-parts
     version: "{{ parts_version }}"
-    script: build_parts.sh   # [unix]
-    script: build_parts.bat  # [win]
+    build:
+      noarch: generic
+      skip: true  # [not linux64]
+    script: build_parts.sh
     test:
       commands:
-        - test -f $PREFIX/share/ldraw/LDConfig.ldr      # [unix]
-        - test -f $PREFIX/share/ldraw/LDConfig_TLG.ldr  # [unix]
-        - test -f $PREFIX/share/ldraw/LDCfgalt.ldr      # [unix]
-        - test -d $PREFIX/share/ldraw/parts/            # [unix]
-        - test -d $PREFIX/share/ldraw/models/           # [unix]
-        - test -f $PREFIX/share/ldraw/models/car.ldr    # [unix]
-        - test -f $PREFIX/share/ldraw/parts/u9462.dat   # [unix]
-        - if exist %LIBRARY_PREFIX%\share\ldraw\LDConfig.ldr (exit 0) else (exit 1)  # [win]
-        - if exist %LIBRARY_PREFIX%\share\ldraw\LDConfig_TLG.ldr (exit 0) else (exit 1)  # [win]
-        - if exist %LIBRARY_PREFIX%\share\ldraw\LDCfgalt.ldr (exit 0) else (exit 1)  # [win]
-        - if exist %LIBRARY_PREFIX%\share\ldraw\parts\u9462.dat (exit 0) else (exit 1)  # [win]
-        - if exist %LIBRARY_PREFIX%\share\ldraw\models\car.ldr (exit 0) else (exit 1)   # [win]
+        - test -f $PREFIX/share/ldraw/LDConfig.ldr
+        - test -f $PREFIX/share/ldraw/LDConfig_TLG.ldr
+        - test -f $PREFIX/share/ldraw/LDCfgalt.ldr
+        - test -d $PREFIX/share/ldraw/parts/
+        - test -d $PREFIX/share/ldraw/models/
+        - test -f $PREFIX/share/ldraw/models/car.ldr
+        - test -f $PREFIX/share/ldraw/parts/u9462.dat
 
   - name: ldraw-mklist
     version: "{{ mklist_version }}"
