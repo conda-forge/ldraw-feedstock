@@ -1,0 +1,79 @@
+schema_version: 1
+
+context:
+  parts_version: "2610"
+  mklist_version: "1.6"
+
+recipe:
+  name: ldraw
+  version: ${{ parts_version }}
+
+source:
+  - url: https://library.ldraw.org/library/updates/complete.zip
+    sha256: 023083918da2d3697c794fb4267975509584f3611b993095874206a803fa610f
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: ldraw-parts
+      version: ${{ parts_version }}
+    build:
+      noarch: generic
+      skip: not (linux and x86_64)
+      script:
+        file: build_parts
+    tests:
+      - script:
+          - test -f $PREFIX/share/ldraw/LDConfig.ldr
+          - test -f $PREFIX/share/ldraw/LDConfig_TLG.ldr
+          - test -f $PREFIX/share/ldraw/LDCfgalt.ldr
+          - test -d $PREFIX/share/ldraw/parts/
+          - test -d $PREFIX/share/ldraw/models/
+          - test -f $PREFIX/share/ldraw/models/car.ldr
+          - test -f $PREFIX/share/ldraw/parts/u9462.dat
+
+  - package:
+      name: ldraw-mklist
+      version: ${{ mklist_version }}
+    build:
+      script:
+        file: build_mklist
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - if: unix
+          then: unzip
+        - if: win
+          then:
+            - m2-unzip
+            - m2-sed
+        - make
+    tests:
+      - script:
+          - if: unix
+            then:
+              - test -f $PREFIX/bin/mklist
+            else:
+              - if exist "%LIBRARY_PREFIX%\bin\mklist.exe" (exit 0) else (exit 1)
+
+about:
+  homepage: https://www.ldraw.org/
+  license: CC-BY-2.0 AND CC-BY-4.0
+  license_file:
+    - CAlicense.txt
+    - CAlicense4.txt
+  summary: LDraw parts library
+  description: |
+    Collection of 3D LEGO parts, 3D part primitives and two example LEGO 3D models
+    in LDraw format. This part library is needed by 3D CAD programs such as MLCAD,
+    LeoCAD and Konstruktor which allow one to construct LEGO models from
+    individual LDraw parts. It is also needed by rendering software such as LDView
+    and LdGLite or instruction creation software like LPub4 or Lic.
+
+extra:
+  recipe-maintainers:
+    - SylvainCorlay
+    - wolfv

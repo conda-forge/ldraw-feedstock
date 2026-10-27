@@ -1,11 +1,11 @@
-About ldraw
-===========
+About ldraw-mklist-feedstock
+============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldraw-feedstock/blob/main/LICENSE.txt)
 
 Home: https://www.ldraw.org/
 
-Package license: CC-BY-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldraw-feedstock/blob/main/LICENSE.txt)
+Package license: CC-BY-2.0 AND CC-BY-4.0
 
 Summary: LDraw parts library
 
@@ -15,12 +15,18 @@ LeoCAD and Konstruktor which allow one to construct LEGO models from
 individual LDraw parts. It is also needed by rendering software such as LDView
 and LdGLite or instruction creation software like LPub4 or Lic.
 
-
 Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>GitHub Actions</td>
+    <td>
+      <a href="https://github.com/conda-forge/ldraw-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/ldraw-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -34,13 +40,6 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7890&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldraw-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7890&branchName=main">
@@ -48,10 +47,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>win_64</td>
+              <td>osx_arm64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7890&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldraw-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/ldraw-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -70,41 +69,83 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ldraw--mklist-green.svg)](https://anaconda.org/conda-forge/ldraw-mklist) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ldraw-mklist.svg)](https://anaconda.org/conda-forge/ldraw-mklist) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ldraw-mklist.svg)](https://anaconda.org/conda-forge/ldraw-mklist) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ldraw-mklist.svg)](https://anaconda.org/conda-forge/ldraw-mklist) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ldraw--parts-green.svg)](https://anaconda.org/conda-forge/ldraw-parts) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ldraw-parts.svg)](https://anaconda.org/conda-forge/ldraw-parts) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ldraw-parts.svg)](https://anaconda.org/conda-forge/ldraw-parts) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ldraw-parts.svg)](https://anaconda.org/conda-forge/ldraw-parts) |
 
-Installing ldraw
-================
+Installing ldraw-mklist
+=======================
 
-Installing `ldraw` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `ldraw-mklist` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `ldraw-mklist, ldraw-parts` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install ldraw-mklist ldraw-parts
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install ldraw-mklist ldraw-parts
 ```
 
-It is possible to list all of the versions of `ldraw-mklist` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add ldraw-mklist ldraw-parts
+# for installing globally
+pixi global install ldraw-mklist ldraw-parts
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `ldraw-mklist` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search ldraw-mklist --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search ldraw-mklist --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search ldraw-mklist --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -116,6 +157,9 @@ mamba repoquery whoneeds ldraw-mklist --channel conda-forge
 # List dependencies of `ldraw-mklist`:
 mamba repoquery depends ldraw-mklist --channel conda-forge
 ```
+
+</details>
+
 
 
 About conda-forge
@@ -132,19 +176,17 @@ for each of the installable packages. Such a repository is known as a *feedstock
 A feedstock is made up of a conda recipe (the instructions on what and how to build
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
-[Azure](https://azure.microsoft.com/en-us/services/devops/), [GitHub](https://github.com/),
-[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
-[Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
+[Azure](https://azure.microsoft.com/en-us/services/devops/) and [GitHub](https://github.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -159,19 +201,19 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating ldraw-feedstock
-========================
+Updating ldraw-mklist-feedstock
+===============================
 
-If you would like to improve the ldraw recipe or build a new
+If you would like to improve the ldraw-mklist recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/ldraw-feedstock are
+Note that all branches in the conda-forge/ldraw-mklist-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
