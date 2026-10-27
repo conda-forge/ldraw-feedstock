@@ -1,5 +1,5 @@
-About ldraw-feedstock
-=====================
+About ldraw-mklist-feedstock
+============================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldraw-feedstock/blob/main/LICENSE.txt)
 
@@ -14,7 +14,6 @@ in LDraw format. This part library is needed by 3D CAD programs such as MLCAD,
 LeoCAD and Konstruktor which allow one to construct LEGO models from
 individual LDraw parts. It is also needed by rendering software such as LDView
 and LdGLite or instruction creation software like LPub4 or Lic.
-
 
 Current build status
 ====================
@@ -70,10 +69,10 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ldraw--mklist-green.svg)](https://anaconda.org/conda-forge/ldraw-mklist) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ldraw-mklist.svg)](https://anaconda.org/conda-forge/ldraw-mklist) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ldraw-mklist.svg)](https://anaconda.org/conda-forge/ldraw-mklist) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ldraw-mklist.svg)](https://anaconda.org/conda-forge/ldraw-mklist) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ldraw--parts-green.svg)](https://anaconda.org/conda-forge/ldraw-parts) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ldraw-parts.svg)](https://anaconda.org/conda-forge/ldraw-parts) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ldraw-parts.svg)](https://anaconda.org/conda-forge/ldraw-parts) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ldraw-parts.svg)](https://anaconda.org/conda-forge/ldraw-parts) |
 
-Installing ldraw
-================
+Installing ldraw-mklist
+=======================
 
-Installing `ldraw` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `ldraw-mklist` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
@@ -202,17 +201,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating ldraw-feedstock
-========================
+Updating ldraw-mklist-feedstock
+===============================
 
-If you would like to improve the ldraw recipe or build a new
+If you would like to improve the ldraw-mklist recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/ldraw-feedstock are
+Note that all branches in the conda-forge/ldraw-mklist-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
