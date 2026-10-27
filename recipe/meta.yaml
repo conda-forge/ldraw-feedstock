@@ -1,29 +1,20 @@
-{% set parts_version = "2206" %}
+{% set parts_version = "2610" %}
 {% set mklist_version = "1.6" %}
-{% set build_number = "1" %}
+{% set build_number = "0" %}
 
 package:
   name: ldraw
 
 source:
-  - url: http://www.ldraw.org/library/updates/complete.zip
-    sha256: a164a0bf1885213ff6c6ae90dd5805097d57ea858ccfae3129792b65f10f5aa9
-
-  - url: http://www.ldraw.org/library/official/LDConfig.ldr
-    sha256: 1c41cfed43b935de8b2113d9e9617e786aacadb0b0329cea2842032fdf166905
-
-  - url: http://www.ldraw.org/library/official/LDCfgalt.ldr
-    sha256: d42d739769ec6850eb691f0be6c8de6f7145a4580d9fdc2024888f43f4cb7189
-
-  - url: http://www.ldraw.org/library/official/LDConfig_TLG.ldr
-    sha256: 04103c69f43a2655d54d4158f119a850ba77f6a1cb8233392570c6c06f792f0b
+  - url: https://library.ldraw.org/library/updates/complete.zip
+    sha256: 023083918da2d3697c794fb4267975509584f3611b993095874206a803fa610f
 
 build:
   number: {{ build_number }}
 
 outputs:
   - name: ldraw-parts
-    version: {{ parts_version }}
+    version: "{{ parts_version }}"
     script: build_parts.sh   # [unix]
     script: build_parts.bat  # [win]
     test:
@@ -37,15 +28,16 @@ outputs:
         - test -f $PREFIX/share/ldraw/parts/u9462.dat   # [unix]
         - if exist %LIBRARY_PREFIX%\share\ldraw\LDConfig.ldr (exit 0) else (exit 1)  # [win]
         - if exist %LIBRARY_PREFIX%\share\ldraw\LDConfig_TLG.ldr (exit 0) else (exit 1)  # [win]
-        - if exist %LIBRARY_PREFIX%\share\ldraw\LDfgalt.ldr (exit 0) else (exit 1)  # [win]
+        - if exist %LIBRARY_PREFIX%\share\ldraw\LDCfgalt.ldr (exit 0) else (exit 1)  # [win]
         - if exist %LIBRARY_PREFIX%\share\ldraw\parts\u9462.dat (exit 0) else (exit 1)  # [win]
         - if exist %LIBRARY_PREFIX%\share\ldraw\models\car.ldr (exit 0) else (exit 1)   # [win]
 
   - name: ldraw-mklist
-    version: {{ mklist_version }}
+    version: "{{ mklist_version }}"
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - unzip      # [not win]
         - m2-unzip   # [win]
         - m2-sed     # [win]
@@ -59,9 +51,11 @@ outputs:
 
 about:
   home: https://www.ldraw.org/
-  license: CC-BY-2.0
+  license: CC-BY-2.0 AND CC-BY-4.0
   license_family: CC
-  license_file: CAlicense.txt
+  license_file:
+    - CAlicense.txt
+    - CAlicense4.txt
   summary: LDraw parts library
   description: |
     Collection of 3D LEGO parts, 3D part primitives and two example LEGO 3D models
